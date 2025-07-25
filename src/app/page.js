@@ -18,7 +18,7 @@ export default function Home() {
             </>
           }
         />
-
+        <Button>Click this Button</Button> 
         <Card title="Latest Solar Panel Stats" className="w-full max-w-xl">
           <p>Panel A generates 300 kWh per month.</p>
         </Card>
