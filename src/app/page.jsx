@@ -5,6 +5,8 @@ import Header from "../components/Header";
 import Card from "../components/Card";
 import Button from "../components/Button"; 
 import LocationCard from "../components/LocationCard";
+import SolarOutputCard from "../components/SolarOutputCard";
+
 
 export default function Home() {
 
@@ -23,6 +25,7 @@ export default function Home() {
           }
         />
         <LocationCard />
+        <SolarOutputCard />
         <Card title="Latest Solar Panel Stats" className="w-full max-w-xl">
           <p>Panel A generates 300 kWh per month.</p>
         </Card>
