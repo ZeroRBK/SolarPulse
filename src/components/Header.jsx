@@ -1,3 +1,5 @@
+// This is the Header component that displays the main title and an optional subtitle for the application.
+
 export default function Header({ title, subtitle }) {
   return (
     <header className="mb-8 text-center">

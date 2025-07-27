@@ -1,3 +1,7 @@
+/**
+ * LocationCard component
+ * Displays the user's location
+ */
 
 "use client";
 

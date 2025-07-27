@@ -1,3 +1,4 @@
+// This is the main entry point for the SolarPulse application. 
 
 import Navbar from "../components/Navbar";
 import Header from "../components/Header";

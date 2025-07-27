@@ -1,3 +1,5 @@
+// This is a Button component that renders a styled button with click functionality.
+
 export default function Button({ children, onClick }) {
   return (
     <button

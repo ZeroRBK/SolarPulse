@@ -1,3 +1,5 @@
+// This file serves as the root layout for the application, defining the overall structure and styles.
+
 import { Geist, Geist_Mono } from "next/font/google";
 import "../styles/globals.css";
 

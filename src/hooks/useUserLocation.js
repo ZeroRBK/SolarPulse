@@ -1,3 +1,6 @@
+//This file defines a custom hook for managing user location in a React component.
+// It handles requesting the user's geolocation and managing the state of the location and any errors that may occur.
+
 import { useState } from "react";
 
 export function useUserLocation() {

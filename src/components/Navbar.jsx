@@ -1,3 +1,5 @@
+// Its purpose is to provide a navigation bar with links to different sections of the application.
+
 import Link from "next/link";
 
 export default function Navbar() {
