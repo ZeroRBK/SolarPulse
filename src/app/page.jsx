@@ -24,8 +24,9 @@ export default function Home() {
             </>
           }
         />
-        <LocationCard />
         <SolarOutputCard />
+
+        
         <Card title="Latest Solar Panel Stats" className="w-full max-w-xl">
           <p>Panel A generates 300 kWh per month.</p>
         </Card>

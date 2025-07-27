@@ -16,54 +16,64 @@ export default function SolarOutputCard() {
   useEffect(() => {
     if (!location) return;
 
-    const fetchSolarData = async () => {
+    const fetchSolarEstimate = async () => {
       try {
         const { lat, lon } = location;
 
-        // Reverse geocode for location name
+        // 1. Reverse geocode for a readable location name
         const geoRes = await fetch(
           `https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lon}`
         );
+        if (!geoRes.ok) throw new Error("Failed to fetch location name");
         const geoData = await geoRes.json();
+
         const locationName =
-          geoData.address.city ||
-          geoData.address.town ||
-          geoData.address.village ||
-          geoData.address.state ||
+          geoData.address?.city ||
+          geoData.address?.town ||
+          geoData.address?.village ||
+          geoData.address?.state ||
           `Lat ${lat.toFixed(2)}, Lon ${lon.toFixed(2)}`;
 
-        // Fetch NASA POWER API for GHI (Global Horizontal Irradiance)
+        // 2. Fetch NASA POWER API for solar irradiance (GHI)
         const ghiRes = await fetch(
           `https://power.larc.nasa.gov/api/temporal/daily/point?parameters=ALLSKY_SFC_SW_DWN&community=RE&longitude=${lon}&latitude=${lat}&format=JSON`
         );
+        if (!ghiRes.ok) throw new Error("Failed to fetch solar irradiance data");
+
         const ghiData = await ghiRes.json();
 
-        const ghiValues = Object.values(
-          ghiData.properties.parameter.ALLSKY_SFC_SW_DWN
-        ) as number[];
+        console.log("NASA POWER API response:", ghiData);
 
-        // Calculate average GHI over available data
-        const avgGHI = ghiValues.reduce((a, b) => a + b, 0) / ghiValues.length;
+        const ghiValues = ghiData?.properties?.parameter?.ALLSKY_SFC_SW_DWN;
 
-        // Estimate solar output:
-        // Monthly output = avgGHI (kWh/m²/day) * 30 days * panel area * efficiency
+        if (!ghiValues || Object.keys(ghiValues).length === 0) {
+          throw new Error("No GHI data found in NASA POWER API response");
+        }
+
+        const ghiArray = Object.values(ghiValues) as number[];
+        const avgGHI = ghiArray.reduce((a, b) => a + b, 0) / ghiArray.length;
+
+        // 3. Calculate estimated monthly solar output
         const days = 30;
-        const panelArea = 1.6; // in m² (typical 400W panel)
-        const efficiency = 0.20; // 20%
+        const panelArea = 1.6; // m² typical panel
+        const efficiency = 0.20; // 20% efficiency
 
         const outputEstimate = avgGHI * days * panelArea * efficiency;
 
+        // Update React state
         setSolarData({
           outputEstimate,
           locationName,
         });
+        setDataError(null);
       } catch (err) {
-        console.error("Failed to fetch solar data", err);
-        setDataError("Failed to fetch solar data.");
+        console.error("Failed to fetch solar data:", err);
+        setDataError("Unable to fetch solar data at this time.");
+        setSolarData(null);
       }
     };
 
-    fetchSolarData();
+    fetchSolarEstimate();
   }, [location]);
 
   if (loading) return <div>Loading location and solar data...</div>;

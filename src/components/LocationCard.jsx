@@ -1,8 +1,3 @@
-/**
- * LocationCard component
- * Displays the user's location
- */
-
 "use client";
 
 import Button from "./Button";
@@ -20,8 +15,8 @@ export default function LocationCard() {
 
       {location && (
         <Card title="Your Location">
-          <p>Latitude: {location.latitude.toFixed(4)}</p>
-          <p>Longitude: {location.longitude.toFixed(4)}</p>
+          <p>Latitude: {location.lat.toFixed(4)}</p>
+          <p>Longitude: {location.lon.toFixed(4)}</p>
         </Card>
       )}
     </>
