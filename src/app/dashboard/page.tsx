@@ -3,7 +3,7 @@
 import Navbar from "../../components/Navbar";
 import Header from "../../components/Header";
 import LocationCard from "../../components/LocationCard";
-import SolarOutputCard from "./components/SolarOutputCard";
+import SolarOutputCard from "../../components/SolarOutputCard";
 import Card from "../../components/Card";
 
 export default function DashboardPage() {
