@@ -1,9 +1,10 @@
-module.exports = {
+const config = {
   plugins: {
-    ["@tailwindcss/postcss"]: {},
-    autoprefixer: {},
+    "@tailwindcss/postcss": {},
+    "autoprefixer": {},
   },
 };
+export default config;
 
 // This file is used to configure PostCSS with Tailwind CSS and Autoprefixer.
 // It ensures that Tailwind's utility classes are processed correctly and that

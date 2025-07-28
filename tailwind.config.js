@@ -1,15 +1,24 @@
 /** @type {import('tailwindcss').Config} */
-module.exports = {
+export default {
+  darkMode: "class", // enable dark mode via class strategy
   content: [
-    "./src/app/**/*.{js,ts,jsx,tsx}",
-    "./src/components/**/*.{js,ts,jsx,tsx}",
-    "./src/styles/**/*.{css}",
+    "./src/**/*.{js,ts,jsx,tsx}",  // Adjust to your source file locations
+    "./app/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        primary: "#f59e0b",      // warm solar yellow
+        secondary: "#1e40af",    // deep celestial blue
+        accent: "#ec4899",       // pinkish accent
+        background: "#fef3c7",   // soft solar background
+        foreground: "#111827",   // dark text
+      },
+      fontFamily: {
+        sans: ["Geist Sans", "ui-sans-serif", "system-ui"],
+        mono: ["Geist Mono", "ui-monospace", "monospace"],
+      },
+    },
   },
   plugins: [],
 };
-// This Tailwind CSS configuration file specifies the content paths to scan for class names,
-// extends the default theme, and includes no additional plugins.
-// Make sure to run the Tailwind CLI or PostCSS to generate the final CSS file with the utility classes.

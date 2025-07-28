@@ -1,19 +1,20 @@
-// Its purpose is to provide a navigation bar with links to different sections of the application.
-
 import Link from "next/link";
 
 export default function Navbar() {
   return (
-    <nav className="w-full flex justify-between items-center py-4 px-8 bg-gray-100 dark:bg-gray-900 shadow-sm">
-      {/* Left side: Brand */}
-      <Link href="/">
-        <span className="text-2xl font-bold text-gray-900 dark:text-white cursor-pointer">
-          SolarPulse
-        </span>
-      </Link>
+    <nav className="flex items-center justify-between px-8 py-4 bg-white dark:bg-gray-900 shadow-md">
+      {/* Left side */}
+      <div className="flex items-center space-x-6 text-gray-900 dark:text-gray-100 text-sm sm:text-base">
+        <Link href="/" className="hover:text-blue-600 dark:hover:text-blue-400 transition">
+          Home
+        </Link>
+        <Link href="/dashboard" className="hover:text-blue-600 dark:hover:text-blue-400 transition">
+          Dashboard
+        </Link>
+      </div>
 
-      {/* Right side: Navigation */}
-      <div className="space-x-6 text-gray-700 dark:text-gray-300 text-sm sm:text-base">
+      {/* Right side */}
+      <div className="flex items-center space-x-6 text-gray-700 dark:text-gray-300 text-sm sm:text-base">
         <Link href="/countries" className="hover:text-blue-600 dark:hover:text-blue-400 transition">
           Explore Countries
         </Link>
